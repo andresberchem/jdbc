@@ -178,8 +178,8 @@ function drawReveal(){
   let head="",good=false;
   if(!host()){const got=m&&m.answered===game.q;good=got&&m.ok;head=`<div class="big ${good?"win":"lose"}">${got?(m.ok?"¡Correcto!":"Incorrecto"):"Sin respuesta"}</div>
   <p class="sub" style="margin:0 0 18px">${good?"+"+m.pts+" puntos.":"Sin puntos esta vez."}</p>`}
-  view(`<div class="card ${fresh?"fresh":""}">${head}${list}${last?`<p class="sub" style="margin-top:26px">Fin de las preguntas. Nadie sabe todavía cómo quedó el ranking: se revelará en el podio final.</p>`:`<h2 style="margin:28px 0 14px">Ranking</h2>${board(host()?10:5,true)}`}
-  ${host()?`<div class="row"><button id="nx">${last?"Revelar al campeón":"Siguiente pregunta"}</button></div>`:'<p class="note">${last?"Espera el podio final…":"Espera la siguiente pregunta…"}</p>'}</div>`);
+  view(`<div class="card ${fresh?"fresh":""}">${head}${list}${last?"":`<h2 style="margin:28px 0 14px">Ranking</h2>${board(host()?10:5,true)}`}
+  ${host()?`<div class="row"><button id="nx">${last?"Revelar al campeón":"Siguiente pregunta"}</button></div>`:""}</div>`);
   if(fresh&&good)confetti(.6);
   if(host())$("nx").onclick=()=>updateDoc(gref(),last?{state:"final"}:{state:"question",q:game.q+1});
 }
